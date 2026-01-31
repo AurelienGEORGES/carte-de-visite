@@ -1,126 +1,104 @@
-/*style glassmorphism*/
-
-/*La police téléchargée sur fontSquirrel, copier collé du fichier CSS fourni*/
 @font-face {
     font-family: 'ambleregular';
-    src: url('Amble-Regular-webfont.eot');
-    src: url('Amble-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Amble-Regular-webfont.woff2') format('woff2'),
-         url('Amble-Regular-webfont.woff') format('woff'),
-         url('Amble-Regular-webfont.ttf') format('truetype'),
-         url('Amble-Regular-webfont.svg#ambleregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+    src: url('Amble-Regular-webfont.woff') format('woff');
 }
 
-/*La police Amble puis des polices par défaut*/
 * {
-    font-family: 'ambleregular','poppins','Times New Roman', sans-serif;
+    font-family: 'ambleregular', sans-serif;
+    box-sizing: border-box;
 }
 
-/*cadrage de mon arrière plan*/
 body {
-    position: relative; /*position relative par rapport à la position absolue de ma carte*/
-    height: 100vh; /*prend toute la hauteur de mon appareil*/
-    background: url(glassmorphismpicture.jpg); /*URL du fond dans le dossier*/
-    background-size: 100% 100%; /*mon fond occupe tout l'espace*/
-    margin: auto; /*centre parfaitement mon fond sans scroll*/
+    margin: 0;
+    padding: 0;
+    /* On fixe le body pour qu'il ne scrolle pas, c'est le wrapper qui gérera l'espace */
+    height: 100vh;
+    background-color: #000; /* Fond noir pour les zones non couvertes par l'image */
+    
+    /* CONFIGURATION IMAGE UNIQUE PORTRAIT */
+    background-image: url('glassmorphismpicture.jpg'); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; /* Proportions parfaites sans déformation */
 }
 
-/*Style de la carte*/
+/* CONTENEUR DE CENTRAGE VERTICAL ET HORIZONTAL */
+.wrapper-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrage vertical */
+    align-items: center;     /* Centrage horizontal */
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-y: auto; /* Permet de scroller si les cartes dépassent l'image */
+}
+
+.grille-portfolio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Les 2 premières lignes (Hero) sont grandes, les 2 dernières (Cartes) sont plus fines */
+    grid-template-rows: 1.5fr 1.5fr 1fr 1fr;
+    
+    grid-template-areas: 
+        "hero hero"
+        "hero hero"
+        "project tech"
+        "soft contact";
+    
+    gap: 15px;
+    width: 95%;
+    max-width: 500px; /* On élargit un peu pour favoriser le format paysage des cartes */
+    height: 80vh; 
+    margin: auto;
+}
+
+/* EFFET GLASSMORPHISM (Tes réglages originaux) */
 .carte {
-    position: absolute; /*position absolue par rapport à la position relative du fond*/
-    top: 15%;        /*position de la carte bien centrée*/
-    left: 15%;
-    height: 70%;
-    width: 70%;
-    background: rgb(14, 175, 162,0.5); /*bleu-vert de la carte avec l'opacitée pour le GlassMorphism*/
-    backdrop-filter: blur(5px); /*flou de mon glassmorphism*/
-    border-radius: 15px; /*j'arrondis les bords de la carte*/
-    box-shadow: 6px 12px 9px 5px rgba(40, 219, 166, 0.5); /*je crée un effet de bordure en transparence*/
+    background: rgba(14, 175, 162, 0.5); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 12px; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
-/*arrangement de mes trois élements : photo, bloc de motivation et liens*/
-.carte .contenu {
-    display: flex;    
-}
-
-/*cadrage de l'élément photo*/
-.carte .contenu .photo {
-    padding-left: 2%;
-    padding-top: 2%; /*décalage en haut à gauche pour espacer la photo*/
-    width: 50%; /*hauteur et largeur du contenu*/
-    height: 50%;
-}
-
-/*style de l'image photo*/
-.carte .contenu .photo img {
-    width: 60%; /*hauteur et largeur de la photo*/
-    height: 60%;
-    border-radius: 50%; /*la photo est arrondie*/
-    border-bottom: 5px solid rgba(31, 214, 92, 0.3); /*bleu-vert du cadre de la photo avec opacitée pour le GlassMorphism*/
-    border-top: 5px solid rgb(31, 214, 92, 0.3);
-    border-left: 5px solid rgb(31, 214, 92, 0.3);
-    border-right: 5px solid rgb(31, 214, 92, 0.3);  
-}
-
-/*Style du titre Aurélien...*/
-.carte .contenu .bloc_milieu .titre_principal h1 {
-    margin-top: 6%; /*epace en haut pour décaler le titre*/
-    margin-right: 30%;
-    color: white; /*le titre est en blanc*/
-    font-size: 1.7em; /*titre en plus gros que le bloc motivation*/
-    padding: 0; /*aucun padding*/
-}
-
-.carte .contenu .bloc_milieu .motivation ul {
-    margin-right: 15%;  /*décalage à droite pour gagner de l'espace par rapport aux liens*/ 
-    margin-left: -15%; /*décalage négatif pour gagner de l'espace par rapport à la photo*/
-    color: white; /*texte de motivation en blanc*/
-    font-size: 1.1em; /*taille d'ecriture plus petite que pour le titre*/
-}
-
-/*style du titre du bloc de liens*/
-.carte .contenu .liens h2 {
-    margin-top: 5%; /*marge en haut*/
-    margin-bottom: -5%; /*marge par rapport aux liens*/
-    margin-left: 5%;
-    font-size: 1.4em; /*taille plus petite que le titre principal*/
-    color: white; /*ecriture en blanc*/
-}
-
-/*style du bloc de lien*/
-.carte .contenu .liens ol {
-    margin-left: -35%;
-    padding-left: -10%;
-}
-
-/*style des lien*/
-.carte .contenu .liens ol, a {
-    margin-right: 10%;
-    padding-left: 5%;
-    list-style-type: none;
-    text-decoration: none;
-    font-size: 1.1em;
-    font-weight: 300;
-    border-radius: 9px;
-    box-shadow: 4px 6px 8px 3px rgb(17, 179, 38,0.5);
-    text-align: left;
+.contenu {
     color: white;
 }
 
+.header-flex {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
 
+h2 { font-size: 1.4rem; margin: 0; }
+h3 { color: #fdbb2d; font-size: 1rem; margin-bottom: 15px; }
 
+ol {
+    list-style: none;
+    padding: 0;
+}
 
+ol li {
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
 
-
-
-
-
-
-
-
-
-
+.hero-card { grid-area: hero; }
+.carte:nth-of-type(2) { grid-area: project; }
+.carte:nth-of-type(3) { grid-area: tech; }
+.carte:nth-of-type(4) { grid-area: soft; }
+.carte:nth-of-type(5) { grid-area: contact; }

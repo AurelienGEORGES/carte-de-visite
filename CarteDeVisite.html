@@ -1,50 +1,67 @@
-<!--commentaire test-->
-<!--C'est le début de ma carte de visite! j'utilise du HTML-->
 <!DOCTYPE html>
-<html>
-	<head>
-		<!--Je définie mon titre, l'encodage puis le lien vers mon fichier CSS-->
-		<title>Carte de visite</title>
-		<meta charset="utf-8">
-        <link rel="stylesheet" href="style_carte_de_visite.css">	
-	</head>
-	<body>
-        <!--définition des balises div: carte, puis contenu, puis photo, 
-        le bloc avec le titre et ma motivation à intégrer Simplon et enfin mes liens--> 
-        <div class='carte'>
-            <div class='contenu'>
-                <div class='photo'>
-                    <img src='photo_CV.jpg' alt='ma photo de CV' />
-                </div>
-                <div class='bloc_milieu'>
-                    <div class='titre_principal'>
-                        <h1>Aurélien Georges, Développeur Web avec Simplon</h1>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Desktop - Glassmorphism</title>
+    <link rel="stylesheet" href="style_carte_de_visite.css">
+</head>
+<body>
+<div class="wrapper-vertical">
+    <main class="grille-portfolio">
+        
+        <section class="carte hero-card">
+            <div class="contenu">
+                <div class="header-flex">
+                    <img src="photo_CV_recente.png" alt="Photo CV" class="avatar">
+                    <div class="titres">
+                        <h2>Full-Stack Developer <span class="flag">FR</span></h2>
+                        <p class="mission">"Best version of myself, one commit at a time." ⚡️</p>
                     </div>
-                    <!--la liste qui définit ma motivation à integrer Simplon-->
-                    <div class='motivation'>
-                        <ul>
-                            <li>Reconversion en "Métier Passion"</li>
-                            <li>Travail en équipe sur des projets concrets</li>
-                            <li>Partage de savoir, de savoir-être et de savoir-faire</li>
-                            <li>Curiosité dans le domaine du numérique</li>
-                            <li>Logique, autonomie et apprendre de ses erreurs</li>
-                            <li>Parcours atypique, je veux apprendre sur moi-même et avec mes collaborateurs pour partager des expériences enrichissantes</li>
-                        </ul>
-                    </div>
-                </div> 
-                <div class='liens'>
-                    <h2>Mes liens:</h2>
-                    <!--la liste qui renvoit vers mes différent liens autoformation, professionnel et collaboratif-->
-                    <ol>
-                        </br><li><a href='https://www.sololearn.com/profile/23281570' target="_blank">SoloLearn</a></li></br>
-                        <li><a href='https://www.codecademy.com/profiles/georgesaurelien0517206533' target="_blank">CodeCademy</a></li></br>
-                        <li><a href='https://www.hackerrank.com/aurelien_george1' target="_blank">HackerRank</a></li></br>
-                        <li><a href='https://openclassrooms.com/fr/members/3chhmrl8td86' target="_blank">OpenClassRooms</a></li></br>
-                        <li><a href='https://www.linkedin.com/in/aur%C3%A9lien-georges-910466144/' target="_blank">LinkedIn</a></li></br>
-                        <li><a href='https://github.com/AurelienGEORGES' target="_blank">GitHub</a></li></br>
-                    </ol>
                 </div>
             </div>
-        </div>
-    </body>
+        </section>
+
+        <section class="carte" style="grid-area: project;">
+            <div class="contenu">
+                <h3>🔱 Project</h3>
+                <ol>
+                    <li>E-commerce 🛒</li>
+                    <li>Logistics 🚚</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="carte" style="grid-area: tech;">
+            <div class="contenu">
+                <h3>🛠️ Tech</h3>
+                <ol>
+                    <li>Symfony</li>
+                    <li>React</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="carte" style="grid-area: soft;">
+            <div class="contenu">
+                <h3>🌟 Skills</h3>
+                <ol>
+                    <li>Logic</li>
+                    <li>Architecture</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="carte" style="grid-area: contact;">
+            <div class="contenu">
+                <h3>🌍 Contact</h3>
+                <ol>
+                    <li>English Pro</li>
+                    <li>Coffee ☕</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+</div>
+</body>
 </html>
