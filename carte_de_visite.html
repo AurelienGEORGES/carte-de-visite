@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AG &#xa5; Glassmorphism</title>
+    <link rel="stylesheet" href="carte_de_visite.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="largeur-reglable">
+            <main class="grille-portfolio">
+                <header class="carte">
+                    <div class="contenu hero-layout">
+                        <section class="hero-stats-bar">
+                            <article class="stat-group">
+                                <span id="github-followers" class="badge">--</span>
+                                <span class="label">followers</span>
+                            </article>
+                            <article class="stat-group">
+                                <span id="github-following" class="badge">--</span>
+                                <span class="label">following</span>
+                            </article>
+                            <article class="stat-group">
+                                <span id="github-my-stars" class="badge">--</span>
+                                <span class="label">stars</span>
+                            </article>
+                        </section>
+                        <section class="hero-bio-container">
+                            <p class="mission" id="github-login">Chargement du login...</p>
+                            <p class="mission" id="github-bio">Chargement du profil...</p>
+                            <p class="mission" id="github-entreprise">Chargement de l'entreprise...</p>
+                        </section>
+                        <div id="github-tech-list" class="tech-stack-mini"></div>
+                    </div>
+                </header>
+                <section class="carte" style="grid-area: global-activity;">
+                    <div class="contenu">
+                        <div class="table-responsive">
+                            <table class="luxury-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Langage</th>
+                                        <th>Dernière Action</th>
+                                        <th>Date</th>
+                                        <th>Mise à jour</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="github-unified-list">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+</body>
+<script src="carte_de_visite.js"></script>
+
+</html>
