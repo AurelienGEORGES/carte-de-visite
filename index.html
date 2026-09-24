@@ -3,71 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AG | Carte de visite</title>
-    <link rel="stylesheet" href="carte_de_visite.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin="">
 </head>
 
 <body>
-    <main class="page-layout">
-        <article class="business-card" aria-label="Carte de visite GitHub d'Aurélien Georges">
-            <section class="glass-subcard stats-card" aria-label="Statistiques GitHub">
-                <article class="stat-group">
-                    <span id="github-followers" class="stat-value">--</span>
-                    <span class="stat-label">Followers</span>
-                </article>
-                <article class="stat-group">
-                    <span id="github-following" class="stat-value">--</span>
-                    <span class="stat-label">Following</span>
-                </article>
-                <article class="stat-group">
-                    <span id="github-my-stars" class="stat-value">--</span>
-                    <span class="stat-label">Stars</span>
-                </article>
-            </section>
-
-            <section class="glass-subcard profile-card" aria-label="Profil">
-                <p class="profile-name" id="github-login">Chargement du profil...</p>
-                <p class="profile-detail" id="github-bio">Chargement de la biographie...</p>
-                <p class="profile-detail" id="github-entreprise">Chargement de l'entreprise...</p>
-            </section>
-
-            <section class="glass-subcard repositories-card" aria-labelledby="repositories-title">
-                <h1 id="repositories-title">Dépôts récents</h1>
-                <ol id="github-unified-list" class="repository-list" aria-live="polite"></ol>
-            </section>
-
-            <section class="glass-subcard performance-card" aria-label="Performances">
-                <article class="performance-metric">
-                    <span id="page-load-time" class="performance-value">--</span>
-                    <span class="stat-label">Chargement de la page</span>
-                </article>
-                <article class="performance-metric">
-                    <span id="github-api-response-time" class="performance-value">--</span>
-                    <span class="stat-label">Réponse API GitHub</span>
-                </article>
-                <article class="performance-metric">
-                    <span id="map-api-response-time" class="performance-value">--</span>
-                    <span class="stat-label">Chargement carte monde</span>
-                </article>
-            </section>
-
-            <section class="glass-subcard map-card" aria-labelledby="map-title">
-                <div class="map-heading">
-                    <h1 id="map-title">Localisation</h1>
-                    <p>Toulouse, France</p>
-                </div>
-                <div id="world-map" aria-label="Carte mondiale avec un repère à Toulouse, France"></div>
-            </section>
-        </article>
-    </main>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-    <script src="carte_de_visite.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 
 </html>
