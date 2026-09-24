@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import StatsCard from './components/StatsCard.jsx';
-import ProfileCard from './components/ProfileCard.jsx';
-import RepositoriesCard from './components/RepositoriesCard.jsx';
-import PerformanceCard from './components/PerformanceCard.jsx';
-import MapCard from './components/MapCard.jsx';
-import { useGitHubData } from './hooks/useGitHubData.js';
-import { usePageLoadTime } from './hooks/usePageLoadTime.js';
+import StatsCard from './components/StatsCard';
+import ProfileCard from './components/ProfileCard';
+import RepositoriesCard from './components/RepositoriesCard';
+import PerformanceCard from './components/PerformanceCard';
+import MapCard from './components/MapCard';
+import { useGitHubData } from './hooks/useGitHubData';
+import { usePageLoadTime } from './hooks/usePageLoadTime';
+import type { GitHubState } from './types';
 
-function getGitHubResponseTime(github) {
+function getGitHubResponseTime(github: GitHubState): string {
     if (github.status === 'success') {
         return github.responseTime;
     }

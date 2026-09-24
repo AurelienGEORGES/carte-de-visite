@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { formatDuration } from '../utils.js';
+import { formatDuration } from '../utils';
 
-export function usePageLoadTime() {
+export function usePageLoadTime(): string {
     const [loadTime, setLoadTime] = useState('--');
 
     useEffect(() => {
-        let timeoutId;
+        let timeoutId: number | undefined;
 
         const measure = () => {
             timeoutId = window.setTimeout(() => {
-                const navigation = performance.getEntriesByType('navigation')[0];
+                const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
                 setLoadTime(formatDuration(navigation?.loadEventEnd || performance.now()));
             }, 0);
         };

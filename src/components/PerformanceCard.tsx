@@ -1,4 +1,9 @@
-function Metric({ value, label }) {
+interface MetricProps {
+    value: string;
+    label: string;
+}
+
+function Metric({ value, label }: MetricProps) {
     return (
         <article className="flex flex-1 flex-col items-center gap-1 text-center">
             <span className="text-[clamp(1.1rem,3.5vw,1.5rem)] font-bold">{value}</span>
@@ -7,7 +12,13 @@ function Metric({ value, label }) {
     );
 }
 
-export default function PerformanceCard({ pageLoadTime, githubResponseTime, mapResponseTime }) {
+interface PerformanceCardProps {
+    pageLoadTime: string;
+    githubResponseTime: string;
+    mapResponseTime: string;
+}
+
+export default function PerformanceCard({ pageLoadTime, githubResponseTime, mapResponseTime }: PerformanceCardProps) {
     return (
         <section className="glass-subcard flex justify-evenly gap-2 px-1.5 py-3.5 sm:gap-4 sm:p-4" aria-label="Performances">
             <Metric value={pageLoadTime} label="Chargement de la page" />

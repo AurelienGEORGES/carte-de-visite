@@ -1,4 +1,11 @@
-function Stat({ value, label }) {
+import type { GitHubState } from '../types';
+
+interface StatProps {
+    value: string | number;
+    label: string;
+}
+
+function Stat({ value, label }: StatProps) {
     return (
         <article className="flex min-w-20 flex-col items-center gap-1">
             <span className="text-[clamp(1.3rem,4vw,1.7rem)] font-bold">{value}</span>
@@ -7,7 +14,7 @@ function Stat({ value, label }) {
     );
 }
 
-export default function StatsCard({ github }) {
+export default function StatsCard({ github }: { github: GitHubState }) {
     const isSuccess = github.status === 'success';
     const isError = github.status === 'error';
 

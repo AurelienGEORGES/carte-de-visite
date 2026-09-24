@@ -1,4 +1,6 @@
-function getProfileTexts(github) {
+import type { GitHubState } from '../types';
+
+function getProfileTexts(github: GitHubState) {
     if (github.status === 'loading') {
         return {
             name: 'Chargement du profil...',
@@ -23,7 +25,7 @@ function getProfileTexts(github) {
     };
 }
 
-export default function ProfileCard({ github }) {
+export default function ProfileCard({ github }: { github: GitHubState }) {
     const { name, bio, company } = getProfileTexts(github);
 
     return (
