@@ -3,61 +3,42 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>AG &#xa5; Glassmorphism</title>
+    <title>AG | Carte de visite</title>
     <link rel="stylesheet" href="carte_de_visite.css">
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="largeur-reglable">
-            <main class="grille-portfolio">
-                <header class="carte">
-                    <div class="contenu hero-layout">
-                        <section class="hero-stats-bar">
-                            <article class="stat-group">
-                                <span id="github-followers" class="badge">--</span>
-                                <span class="label">followers</span>
-                            </article>
-                            <article class="stat-group">
-                                <span id="github-following" class="badge">--</span>
-                                <span class="label">following</span>
-                            </article>
-                            <article class="stat-group">
-                                <span id="github-my-stars" class="badge">--</span>
-                                <span class="label">stars</span>
-                            </article>
-                        </section>
-                        <section class="hero-bio-container">
-                            <p class="mission" id="github-login">Chargement du login...</p>
-                            <p class="mission" id="github-bio">Chargement du profil...</p>
-                            <p class="mission" id="github-entreprise">Chargement de l'entreprise...</p>
-                        </section>
-                        <div id="github-tech-list" class="tech-stack-mini"></div>
-                    </div>
-                </header>
-                <section class="carte" style="grid-area: global-activity;">
-                    <div class="contenu">
-                        <div class="table-responsive">
-                            <table class="luxury-table">
-                                <thead>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>Langage</th>
-                                        <th>Dernière Action</th>
-                                        <th>Date</th>
-                                        <th>Mise à jour</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="github-unified-list">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    </div>
+    <main class="page-layout">
+        <article class="business-card" aria-label="Carte de visite GitHub d'Aurélien Georges">
+            <section class="glass-subcard stats-card" aria-label="Statistiques GitHub">
+                <article class="stat-group">
+                    <span id="github-followers" class="stat-value">--</span>
+                    <span class="stat-label">Followers</span>
+                </article>
+                <article class="stat-group">
+                    <span id="github-following" class="stat-value">--</span>
+                    <span class="stat-label">Following</span>
+                </article>
+                <article class="stat-group">
+                    <span id="github-my-stars" class="stat-value">--</span>
+                    <span class="stat-label">Stars</span>
+                </article>
+            </section>
+
+            <section class="glass-subcard profile-card" aria-label="Profil">
+                <p class="profile-name" id="github-login">Chargement du profil...</p>
+                <p class="profile-detail" id="github-bio">Chargement de la biographie...</p>
+                <p class="profile-detail" id="github-entreprise">Chargement de l'entreprise...</p>
+            </section>
+
+            <section class="glass-subcard repositories-card" aria-labelledby="repositories-title">
+                <h1 id="repositories-title">Dépôts récents</h1>
+                <ol id="github-unified-list" class="repository-list" aria-live="polite"></ol>
+            </section>
+        </article>
+    </main>
+
+    <script src="carte_de_visite.js"></script>
 </body>
-<script src="carte_de_visite.js"></script>
 
 </html>
