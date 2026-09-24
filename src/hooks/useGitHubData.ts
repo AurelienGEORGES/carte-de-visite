@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { formatDuration } from '../utils.js';
+import { formatDuration } from '../utils';
+import type { GitHubProfile, GitHubRepository, GitHubState } from '../types';
 
 const USERNAME = 'AurelienGEORGES';
 const API_BASE_URL = `https://api.github.com/users/${USERNAME}`;
 
-function ensureSuccess(response) {
+function ensureSuccess(response: Response): Response {
     if (!response.ok) {
         throw new Error(`GitHub API error: ${response.status}`);
     }
@@ -12,8 +13,8 @@ function ensureSuccess(response) {
     return response;
 }
 
-export function useGitHubData() {
-    const [state, setState] = useState({ status: 'loading' });
+export function useGitHubData(): GitHubState {
+    const [state, setState] = useState<GitHubState>({ status: 'loading' });
 
     useEffect(() => {
         const controller = new AbortController();
@@ -29,11 +30,11 @@ export function useGitHubData() {
                 ]);
                 const responseTime = formatDuration(performance.now() - requestStartedAt);
 
-                const [profile, repositories, starred] = await Promise.all([
+                const [profile, repositories, starred] = (await Promise.all([
                     profileResponse.json(),
                     repositoriesResponse.json(),
                     starredResponse.json()
-                ]);
+                ])) as [GitHubProfile, GitHubRepository[], unknown[]];
                 const lastPage = starredResponse.headers.get('Link')?.match(/page=(\d+)>; rel="last"/);
 
                 setState({
@@ -44,7 +45,7 @@ export function useGitHubData() {
                     stars: lastPage ? Number(lastPage[1]) : starred.length
                 });
             } catch (error) {
-                if (error.name === 'AbortError') {
+                if (error instanceof DOMException && error.name === 'AbortError') {
                     return;
                 }
                 console.error('Impossible de charger les données GitHub :', error);

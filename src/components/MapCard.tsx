@@ -3,11 +3,11 @@ import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import { formatDuration } from '../utils.js';
+import { formatDuration } from '../utils';
 
 const WORLD_ZOOM = 1.5;
-const WORLD_BOUNDS = [[-85, -180], [85, 180]];
-const TOULOUSE = [43.6047, 1.4442];
+const WORLD_BOUNDS: L.LatLngBoundsExpression = [[-85, -180], [85, 180]];
+const TOULOUSE: L.LatLngTuple = [43.6047, 1.4442];
 const TILES_URL = 'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=lx9QLhuAyx3LhtoQz1LB';
 
 const markerIconConfig = L.icon({
@@ -17,13 +17,17 @@ const markerIconConfig = L.icon({
     shadowUrl: markerShadow
 });
 
-export default function MapCard({ onTilesLoaded }) {
-    const containerRef = useRef(null);
+interface MapCardProps {
+    onTilesLoaded?: (responseTime: string) => void;
+}
+
+export default function MapCard({ onTilesLoaded }: MapCardProps) {
+    const containerRef = useRef<HTMLDivElement>(null);
     const onTilesLoadedRef = useRef(onTilesLoaded);
     onTilesLoadedRef.current = onTilesLoaded;
 
     useEffect(() => {
-        const map = L.map(containerRef.current, {
+        const map = L.map(containerRef.current!, {
             boxZoom: false,
             doubleClickZoom: false,
             dragging: false,
@@ -62,7 +66,9 @@ export default function MapCard({ onTilesLoaded }) {
 
         L.marker(TOULOUSE, { icon: markerIconConfig }).addTo(map);
 
-        return () => map.remove();
+        return () => {
+            map.remove();
+        };
     }, []);
 
     return (

@@ -1,4 +1,6 @@
-export default function RepositoriesCard({ github }) {
+import type { GitHubState } from '../types';
+
+export default function RepositoriesCard({ github }: { github: GitHubState }) {
     const repositories = github.status === 'success' ? github.repositories : [];
 
     return (
