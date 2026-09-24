@@ -15,7 +15,7 @@
         @apply min-h-screen min-w-80 bg-[#d9e6ee] font-sans text-ink;
         background-image:
             linear-gradient(rgba(217, 230, 238, 0.2), rgba(217, 230, 238, 0.2)),
-            url('/background.jpg');
+            url('/background.webp');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
