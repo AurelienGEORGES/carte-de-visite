@@ -12,6 +12,10 @@ function setText(id, value) {
     }
 }
 
+function formatDuration(duration) {
+    return `${Math.round(duration)} ms`;
+}
+
 function ensureSuccess(response) {
     if (!response.ok) {
         throw new Error(`GitHub API error: ${response.status}`);
@@ -44,13 +48,69 @@ function renderRepositories(repositories) {
     });
 }
 
+function initializeMap() {
+    const mapContainer = getElement('world-map');
+    if (!mapContainer) {
+        return;
+    }
+
+    if (!window.L) {
+        mapContainer.textContent = 'La carte est temporairement indisponible.';
+        return;
+    }
+
+    const worldZoom = 1.5;
+    const toulouse = [43.6047, 1.4442];
+    const map = window.L.map(mapContainer, {
+        boxZoom: false,
+        doubleClickZoom: false,
+        dragging: false,
+        keyboard: false,
+        maxBounds: [[-85, -180], [85, 180]],
+        maxBoundsViscosity: 1,
+        minZoom: worldZoom,
+        maxZoom: worldZoom,
+        scrollWheelZoom: false,
+        touchZoom: false,
+        worldCopyJump: false,
+        zoomControl: false,
+        zoomSnap: 0
+    }).setView([20, 0], worldZoom);
+
+    const mapRequestStartedAt = performance.now();
+    const mapTiles = window.L.tileLayer(
+    'https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=lx9QLhuAyx3LhtoQz1LB',
+    {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors &copy; MapTiler',
+        bounds: [[-85, -180], [85, 180]],
+        noWrap: true,
+        tileSize: 512,
+        zoomOffset: -1
+    }
+    );
+
+    mapTiles.once('load', () => {
+        setText('map-api-response-time', formatDuration(performance.now() - mapRequestStartedAt));
+    });
+    mapTiles.once('tileerror', () => {
+        setText('map-api-response-time', 'Indisponible');
+    });
+    mapTiles.addTo(map);
+
+    window.L.marker(toulouse)
+        .addTo(map);
+}
+
 async function loadGitHubData() {
     try {
+        const requestStartedAt = performance.now();
         const [profileResponse, repositoriesResponse, starredResponse] = await Promise.all([
             fetch(API_BASE_URL).then(ensureSuccess),
             fetch(`${API_BASE_URL}/repos?sort=updated_at&per_page=10`).then(ensureSuccess),
             fetch(`${API_BASE_URL}/starred?per_page=1`).then(ensureSuccess)
         ]);
+        setText('github-api-response-time', formatDuration(performance.now() - requestStartedAt));
 
         const [profile, repositories] = await Promise.all([
             profileResponse.json(),
@@ -71,7 +131,17 @@ async function loadGitHubData() {
         setText('github-bio', 'Les informations seront disponibles dès que la connexion sera rétablie.');
         setText('github-entreprise', '');
         setText('github-my-stars', '—');
+        setText('github-api-response-time', '—');
     }
 }
 
+window.addEventListener('load', () => {
+    window.setTimeout(() => {
+        const navigation = performance.getEntriesByType('navigation')[0];
+        const loadDuration = navigation?.loadEventEnd || performance.now();
+        setText('page-load-time', formatDuration(loadDuration));
+    }, 0);
+});
+
+initializeMap();
 loadGitHubData();
