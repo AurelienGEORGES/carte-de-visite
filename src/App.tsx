@@ -6,18 +6,8 @@ import PerformanceCard from './components/PerformanceCard';
 import MapCard from './components/MapCard';
 import { useGitHubData } from './hooks/useGitHubData';
 import { usePageLoadTime } from './hooks/usePageLoadTime';
-import type { GitHubState } from './types';
-
-function getGitHubResponseTime(github: GitHubState): string {
-    if (github.status === 'success') {
-        return github.responseTime;
-    }
-
-    return github.status === 'error' ? '—' : '--';
-}
-
 export default function App() {
-    const github = useGitHubData();
+    const { github, responseTime: githubResponseTime } = useGitHubData();
     const pageLoadTime = usePageLoadTime();
     const [mapResponseTime, setMapResponseTime] = useState('--');
 
@@ -32,10 +22,10 @@ export default function App() {
                 <RepositoriesCard github={github} />
                 <PerformanceCard
                     pageLoadTime={pageLoadTime}
-                    githubResponseTime={getGitHubResponseTime(github)}
+                    githubResponseTime={githubResponseTime}
                     mapResponseTime={mapResponseTime}
                 />
-                <MapCard onTilesLoaded={setMapResponseTime} />
+                <MapCard onMapLoaded={setMapResponseTime} />
             </article>
         </main>
     );

@@ -13,13 +13,13 @@ export interface GitHubRepository {
     html_url: string;
 }
 
+export interface GitHubData {
+    profile: GitHubProfile;
+    repositories: GitHubRepository[];
+    stars: number;
+}
+
 export type GitHubState =
     | { status: 'loading' }
     | { status: 'error' }
-    | {
-          status: 'success';
-          responseTime: string;
-          profile: GitHubProfile;
-          repositories: GitHubRepository[];
-          stars: number;
-      };
+    | ({ status: 'success' } & GitHubData);

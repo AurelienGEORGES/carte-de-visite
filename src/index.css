@@ -2,7 +2,8 @@
 
 @font-face {
     font-family: 'ambleregular';
-    src: url('/Amble-Regular-webfont.woff') format('woff');
+    src: url('/Amble-Regular-webfont.woff2') format('woff2');
+    font-display: swap;
 }
 
 @theme {
@@ -13,13 +14,29 @@
 @layer base {
     body {
         @apply min-h-screen min-w-80 bg-[#d9e6ee] font-sans text-ink;
+    }
+
+    /* Fond sur un calque fixe plutôt que background-attachment: fixed,
+       qui force à redessiner toute la page à chaque défilement. */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: -1;
         background-image:
             linear-gradient(rgba(217, 230, 238, 0.2), rgba(217, 230, 238, 0.2)),
-            url('/background.webp');
+            url('/background-mobile.webp');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        background-attachment: fixed;
+    }
+
+    @media (min-width: 768px) {
+        body::before {
+            background-image:
+                linear-gradient(rgba(217, 230, 238, 0.2), rgba(217, 230, 238, 0.2)),
+                url('/background.webp');
+        }
     }
 }
 
@@ -28,7 +45,7 @@
 }
 
 @utility glass-subcard {
-    @apply rounded-[18px] border border-white/40 bg-[rgba(246,250,253,0.28)] shadow-[inset_0_1px_rgba(255,255,255,0.28)] backdrop-blur-md;
+    @apply rounded-[18px] border border-white/40 bg-[rgba(246,250,253,0.28)] shadow-[inset_0_1px_rgba(255,255,255,0.28)];
 }
 
 @utility stat-label {
@@ -37,8 +54,4 @@
 
 @utility section-title {
     @apply m-0 text-base tracking-[0.06em] uppercase;
-}
-
-.leaflet-control-attribution {
-    background: rgba(246, 250, 253, 0.7) !important;
 }
