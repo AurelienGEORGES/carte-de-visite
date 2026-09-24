@@ -11,3 +11,8 @@ npm run build    # vérification TypeScript + build de production dans dist/
 npm run typecheck # vérification TypeScript seule
 npm run preview  # prévisualiser le build
 ```
+
+## Déploiement
+
+Chaque push sur `main` construit le site et le publie sur GitHub Pages via le workflow `.github/workflows/deploy.yml`.
+Dans les réglages du dépôt (Settings → Pages), la source doit être « GitHub Actions ».
